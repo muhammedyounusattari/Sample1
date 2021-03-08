@@ -32,23 +32,23 @@ RUN mkdir /build
 #and then you can copy the rest of the source directory. If the package.json file has changed, then 
 #that will be new and it will re-run the npm install caching that for future builds.
 
-COPY ./dvdrentalClient/package.json /build/dvdrentalClient/
+COPY ./sample1Client/package.json /build/sample1Client/
 
-WORKDIR /build/dvdrentalClient
+WORKDIR /build/sample1Client
 
 RUN npm install
 
 WORKDIR /build
 
-COPY ./dvdrentalClient/ /build/dvdrentalClient/
+COPY ./sample1Client/ /build/sample1Client/
 
-WORKDIR /build/dvdrentalClient
+WORKDIR /build/sample1Client
 
 # Speed the build by allocating more memory to node.js
 RUN node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build
 
 #copy angular dist app folder to the public htdocs of the apache container.
-RUN cp -R ./dist/dvdrentalClient/* /usr/local/apache2/htdocs/
+RUN cp -R ./dist/sample1Client/* /usr/local/apache2/htdocs/
 
 # Copy certificate files
 COPY ./server.crt /usr/local/apache2/conf/
@@ -101,4 +101,4 @@ RUN chmod -R 440 \
 RUN find /usr/local/apache2/htdocs/ -mindepth 1 -type d -exec chmod +x {} \;
 
 #expose port
-EXPOSE 4700
+EXPOSE 443

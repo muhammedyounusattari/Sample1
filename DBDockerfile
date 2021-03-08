@@ -2,7 +2,7 @@ FROM postgres:10.14-alpine
 
 #
 COPY ./create_db.sh /docker-entrypoint-initdb.d/20-create_db.sh
-COPY ./dvdrental.sql /dvdrental.sql
+COPY ./sample1.sql /sample1.sql
 
 RUN chmod +x /docker-entrypoint-initdb.d/20-create_db.sh
 

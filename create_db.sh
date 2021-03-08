@@ -3,11 +3,11 @@ set -e
 
 POSTGRES="psql --username postgres"
 
-echo "Creating database: dvdrental"
+echo "Creating database: sample1"
 
 $POSTGRES <<EOSQL
-SELECT 'CREATE DATABASE dvdrental' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'dvdrental')\gexec;
+SELECT 'CREATE DATABASE sample1' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'sample1')\gexec;
 EOSQL
 
-echo "Creating dvdrental tables..."
-psql -d dvdrental -a -U postgres -f /dvdrental.sql
+echo "Creating sample1 tables..."
+psql -d sample1 -a -U postgres -f /sample1.sql

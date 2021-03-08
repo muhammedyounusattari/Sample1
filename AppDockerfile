@@ -28,16 +28,16 @@ ENV DEBIAN_FRONTEND noninteractive
 #Build
 RUN mkdir /build
 
-COPY dvdrental/ /build/dvdrental/
+COPY sample1/ /build/sample1/
 
-WORKDIR /build/dvdrental
+WORKDIR /build/sample1
 
 RUN mvn clean package -Dmaven.test.skip=true
 
 #expose port
 EXPOSE 5555
 
-WORKDIR /build/dvdrental/target
+WORKDIR /build/sample1/target
 
 #cmd to execute
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","dvdrental-0.0.1-SNAPSHOT.war"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","sample1-0.0.1-SNAPSHOT.war"]
